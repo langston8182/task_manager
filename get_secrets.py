@@ -1,3 +1,5 @@
+import os
+
 import boto3
 import json
 
@@ -11,7 +13,12 @@ def get_secret(secret_name, region_name):
     global secrets_cache
     if secrets_cache is not None:
         return secrets_cache
-    client = boto3.client("secretsmanager", region_name=region_name)
+    client = boto3.client(
+        "secretsmanager",
+        aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
+        region_name=region_name
+    )
 
     try:
         # Récupérer le secret
