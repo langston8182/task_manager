@@ -25,6 +25,11 @@ def get_task(query: str) -> str:
         Queles sont les taches de Virginie a faire pour du 10/12/2024 au 17/12/2024 ?
     :param query: La question posée
     :return: la réponse de l'assistant. Je veux que si il y a plusieurs taches tu me les donnes les unes sous les autres.
+    exemple :
+    Voici les tâches de Cyril :
+    1. Aller au JAF - due le 05/12/2024
+    2. Aller au tribunal - due le 07/12/2024
+    3. Aller au travail - due le 10/12/2024
     """
     retrieval_chain = setup_rag(
         connection_string=connection_string,
