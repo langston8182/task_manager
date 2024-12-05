@@ -30,6 +30,7 @@ def get_task(query: str) -> str:
     1. Aller au JAF - due le 05/12/2024
     2. Aller au tribunal - due le 07/12/2024
     3. Aller au travail - due le 10/12/2024
+    Si il n'y a pas de tache, tu dois retourner "Il n'y a pas de tache."
     """
     retrieval_chain = setup_rag(
         connection_string=connection_string,
