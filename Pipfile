@@ -20,6 +20,7 @@ langgraph = "*"
 streamlit = "*"
 streamlit-chat = "*"
 boto3 = "*"
+toml = "*"
 
 [dev-packages]
 

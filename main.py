@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_chat import message
 from core import run_llm
 from datetime import datetime
+import json
 
 # Configuration de la page
 st.set_page_config(page_title="Chat LLM", page_icon="💬", layout="centered")
@@ -9,8 +10,7 @@ st.set_page_config(page_title="Chat LLM", page_icon="💬", layout="centered")
 # Charger le CSS depuis le fichier externe
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-USER_CREDENTIALS = st.secrets["USER_CREDENTIALS"]
+USER_CREDENTIALS = json.loads(st.secrets["USER_CREDENTIALS"])
 #USER_CREDENTIALS = {
 #    "admin": "password123",
 #    "user1": "mypassword",
