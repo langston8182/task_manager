@@ -33,6 +33,6 @@ def run_llm(query: str) -> str:
     return result["output"]
 
 if __name__ == "__main__":
-    query = "est ce que Cyril a des taches aujourd'hui ?"
+    query = "quelles sont les taches de cyril ?"
     result = run_llm(query)
     print(result)

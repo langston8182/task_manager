@@ -26,10 +26,11 @@ with st.form(key="chat_form", clear_on_submit=True):
 if submit_button and prompt:
     with st.spinner("L'assistant réfléchit..."):
         result = run_llm(query=prompt)  # Appel au backend
+        formatted_response = result.replace("\n", "<br>")  # Remplacer les sauts
         current_time = datetime.now().strftime("%H:%M")  # Heure actuelle
         # Ajouter les messages à l'historique
         st.session_state["chat_data"].append({"role": "user", "message": prompt, "time": current_time})
-        st.session_state["chat_data"].append({"role": "assistant", "message": result, "time": current_time})
+        st.session_state["chat_data"].append({"role": "assistant", "message": formatted_response, "time": current_time})
 
 # Affichage des messages existants
 for chat in st.session_state["chat_data"]:
