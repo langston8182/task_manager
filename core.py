@@ -33,7 +33,7 @@ def run_llm(query: str) -> str:
     return result["output"]
 
 if __name__ == "__main__":
-    query = "Quelles sont les taches de Virginie ?"
+    query = "Quelles sont les taches de Cyril ?"
     #query = "Modifie la tache de virginie pour le velo et modifie le contenu par réparé le velo"
     #query = "Modifie la tache de cyril pour reparer le velo et assigne la a Virginie"
     #query = "Modifie la tache de reparer le velo et elle doit etre terminee pour ce lundi"

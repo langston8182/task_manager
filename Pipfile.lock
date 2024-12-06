@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "11b96dff6c9e318c2c062156abae5b7dbc739b1e84bf37aa1149b1614f35f140"
+            "sha256": "da1625b19cff46a21d37e633e4526969e87168c58908c6bcf0a9dd463a4febc2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -2437,6 +2437,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.6'",
             "version": "==0.1.1"
+        },
+        "streamlit-cookies-controller": {
+            "hashes": [
+                "sha256:f5df2543de858f1585dcb6e90f58f38aafbf313ee8e237c64663b2d9761583cc",
+                "sha256:f97fec6acdeee9cb9e16da25c3fc91d404b5b0ddced87c1d9fa9c62f65ca3251"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==0.0.4"
         },
         "sympy": {
             "hashes": [

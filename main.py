@@ -1,8 +1,9 @@
 import streamlit as st
-from streamlit_chat import message
 from core import run_llm
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
+from streamlit_cookies_controller import CookieController
+import time
 
 # Configuration de la page
 st.set_page_config(page_title="Chat LLM", page_icon="💬", layout="centered")
@@ -11,15 +12,14 @@ st.set_page_config(page_title="Chat LLM", page_icon="💬", layout="centered")
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 USER_CREDENTIALS = json.loads(st.secrets["USER_CREDENTIALS"])
-#USER_CREDENTIALS = {
-#    "admin": "password123",
-#    "user1": "mypassword",
-#}
+# Les credentials sont stockés dans un fichier toml dans ~/.streamlit/secrets.toml
 
-# Initialisation de l'état de connexion
+cookie_manager = CookieController()
+cookie_username = cookie_manager.get("username")
+time.sleep(2)
 if "logged_in" not in st.session_state:
-    st.session_state["logged_in"] = False
-    st.session_state["username"] = ""
+    st.session_state["logged_in"] = False if not cookie_username else True
+    st.session_state["username"] = cookie_username if cookie_username else ""
 
 # Interface de connexion si l'utilisateur n'est pas connecté
 if not st.session_state["logged_in"]:
@@ -33,6 +33,9 @@ if not st.session_state["logged_in"]:
         if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
             st.session_state["logged_in"] = True
             st.session_state["username"] = username
+
+            cookie_manager.set("username", username, expires=(datetime.now() + timedelta(days=7)))
+
             st.success("Connexion réussie !")
             st.rerun()
         else:
@@ -45,6 +48,10 @@ else:
     if logout_button:
         st.session_state["logged_in"] = False
         st.session_state["username"] = ""
+
+        # Supprimer le cookie
+        cookie_manager.remove("username")
+
         st.rerun()
 
     if "chat_data" not in st.session_state:
@@ -55,7 +62,7 @@ else:
 
     # Formulaire pour la saisie et le bouton d'envoi
     with st.form(key="chat_form", clear_on_submit=True):
-        prompt = st.text_area("Entrez votre question :", key="prompt_input", placeholder="Posez votre question ici...")
+        prompt = st.text_input("Entrez votre question :", key="prompt_input", placeholder="Posez votre question ici...")
         submit_button = st.form_submit_button("Envoyer")
 
     # Gestion de la soumission

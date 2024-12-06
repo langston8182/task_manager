@@ -35,7 +35,7 @@ def setup_rag(connection_string: str, database_name: str, tasks_collection: Coll
     retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
     combine_docs_chain = create_stuff_documents_chain(llm, retrieval_qa_chat_prompt)
     retrieval_chain = create_retrieval_chain(
-        retriever=mongo_vector_store.as_retriever(),
+        retriever=mongo_vector_store.as_retriever(search_kwargs={"k": 50}),
         combine_docs_chain=combine_docs_chain,
     )
 

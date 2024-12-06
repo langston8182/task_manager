@@ -21,6 +21,7 @@ streamlit = "*"
 streamlit-chat = "*"
 boto3 = "*"
 toml = "*"
+streamlit-cookies-controller = "*"
 
 [dev-packages]
 
