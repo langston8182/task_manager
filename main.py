@@ -6,7 +6,7 @@ from streamlit_cookies_controller import CookieController
 import time
 
 # Configuration de la page
-st.set_page_config(page_title="Chat LLM", page_icon="💬", layout="centered")
+st.set_page_config(page_title="Chat LLM", page_icon="💬", layout="wide")
 
 # Charger le CSS depuis le fichier externe
 with open("style.css") as f:
