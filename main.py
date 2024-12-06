@@ -16,7 +16,7 @@ USER_CREDENTIALS = json.loads(st.secrets["USER_CREDENTIALS"])
 
 cookie_manager = CookieController()
 cookie_username = cookie_manager.get("username")
-time.sleep(2)
+time.sleep(5)
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False if not cookie_username else True
     st.session_state["username"] = cookie_username if cookie_username else ""
