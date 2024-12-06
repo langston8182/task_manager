@@ -7,7 +7,6 @@ from pymongo.collection import Collection
 
 from get_secrets import get_key_value
 
-
 def setup_rag(connection_string: str, database_name: str, tasks_collection: Collection):
     """
     Configure le système RAG.

@@ -2,10 +2,14 @@ import json
 
 from dotenv import load_dotenv
 from langchain.tools import tool
+from langchain_openai import OpenAIEmbeddings
 
 from db_config import tasks_collection
+from get_secrets import get_key_value
 
 load_dotenv()
+
+embeddings = OpenAIEmbeddings(api_key=get_key_value("OPENAI_API_KEY"))
 
 @tool
 def update_task(updated_task: str) -> str:
@@ -44,8 +48,9 @@ def update_task(updated_task: str) -> str:
 
         # Etape 2 : Mise à jour de la tâche
         object_id = document["_id"]
+        new_embedding = embeddings.embed_documents([updated_task])
         update_result = tasks_collection.update_one(
-            {"_id": object_id}, {"$set": {"text": updated_task}}
+            {"_id": object_id}, {"$set": {"text": updated_task, "embedding": new_embedding}}
         )
 
         if update_result.modified_count == 1:
