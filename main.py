@@ -55,7 +55,7 @@ else:
 
     # Formulaire pour la saisie et le bouton d'envoi
     with st.form(key="chat_form", clear_on_submit=True):
-        prompt = st.text_input("Entrez votre question :", key="prompt_input", placeholder="Posez votre question ici...")
+        prompt = st.text_area("Entrez votre question :", key="prompt_input", placeholder="Posez votre question ici...")
         submit_button = st.form_submit_button("Envoyer")
 
     # Gestion de la soumission
