@@ -31,6 +31,7 @@ if not st.session_state["logged_in"]:
     if login_button:
         # Vérification des identifiants
         if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
+            print(f"{USER_CREDENTIALS}")
             st.session_state["logged_in"] = True
             st.session_state["username"] = username
 
@@ -68,7 +69,7 @@ else:
     # Gestion de la soumission
     if submit_button and prompt:
         with st.spinner("L'assistant réfléchit..."):
-            result = run_llm(query=prompt)  # Appel au backend
+            result = run_llm(query=prompt, username=cookie_username)  # Appel au backend
             formatted_response = result.replace("\n", "<br>")  # Remplacer les sauts
             current_time = datetime.now().strftime("%H:%M")  # Heure actuelle
             # Ajouter les messages à l'historique

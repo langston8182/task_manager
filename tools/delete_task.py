@@ -17,6 +17,9 @@ def delete_task(id: str) -> str:
      Il doit y avoir le mot identifiant ou identifiants dans la requete.
     - Supprimer la ou les tâches de la base de données
     Important : En aucun cas tu dois supprimer les tâches sauf si c'est explicitement demandé par l'utilisateur.
+    si la requête contient une référence à la première personne,
+    comme "je", "j'", "ma", "mes", "moi" ou "mon". Si tu détectes une référence à la première personne,
+    appelle l'outil approprié pour récupérer le nom de la personne.
     :param id: l'identifiant de la tâche à supprimer. Il peut y avoir plusieurs identifiants séparés par des virgules sans espaces.
     :return: le résultat de la suppression
     """

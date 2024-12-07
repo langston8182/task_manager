@@ -37,6 +37,9 @@ def update_task(updated_task: str) -> str:
     je ne veux pas de guillemets simples ' en debut et fin de la chaine.
     je ne veux pas de guillemets doubles " en debut et fin de la chaine.
     Je veux uniquement le json brut dans updated_task
+    si la requête contient une référence à la première personne,
+    comme "je", "j'", "ma", "mes", "moi" ou "mon". Si tu détectes une référence à la première personne,
+    appelle l'outil approprié pour récupérer le nom de la personne.
     :return: la réponse de l'assistant
     """
     try:

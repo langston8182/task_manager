@@ -11,11 +11,14 @@ from tools.delete_task import delete_task
 from tools.get_current_time import get_current_time
 from tools.get_task import get_task
 from tools.update_task import update_task
+import user_context
+from tools.who_am_i import who_am_i
 
 load_dotenv()
 load_aws_env()
 
-def run_llm(query: str) -> str:
+def run_llm(query: str, username: str) -> str:
+    user_context.username = username
     llm = ChatOpenAI(temperature=0, model="gpt-4o-mini", api_key=get_key_value("OPENAI_API_KEY"))
     prompt = hub.pull("hwchase17/react")
     tools = [
@@ -25,6 +28,7 @@ def run_llm(query: str) -> str:
         get_current_time,
         update_task,
         create_task_id,
+        who_am_i,
     ]
     agent = create_react_agent(prompt=prompt, llm=llm, tools=tools)
     executor = AgentExecutor(agent=agent, tools=tools, verbose=True)

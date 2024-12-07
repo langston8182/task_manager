@@ -27,8 +27,11 @@ def add_task(task: str) -> str:
     }
     Au début de la création de la tache le champ status doit être "en cours".
     si il y a une notion de temps dans la requete, appelle l'outil adpaté.
+    si la requête contient une référence à la première personne,
+    comme "je", "j'", "ma", "mes", "moi" ou "mon". Si tu détectes une référence à la première personne,
+    appelle l'outil approprié pour récupérer le nom de la personne.
     :param task: La tâche à ajouter au format json
-    :return: message de confirmation
+    :return: message de confirmation. Je veux aussi que tu me renvoies le contenu de la tâche ajoutée avec le responsable est la date
     """
     try:
         documents = [Document(page_content=f"{task}")]
