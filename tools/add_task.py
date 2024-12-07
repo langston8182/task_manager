@@ -26,7 +26,7 @@ def add_task(task: str) -> str:
         "responsable": "responsable de la tâche"
     }
     Au début de la création de la tache le champ status doit être "en cours".
-    si il y a une notion de temps dans la requete, appelle l'outil adpaté.
+    si il y a une notion de temps dans la requete (exemple : aujourd'hui, demain, le 3/12/2014, ...), appelle l'outil adpaté.
     si la requête contient une référence à la première personne,
     comme "je", "j'", "ma", "mes", "moi" ou "mon". Si tu détectes une référence à la première personne,
     appelle l'outil approprié pour récupérer le nom de la personne.

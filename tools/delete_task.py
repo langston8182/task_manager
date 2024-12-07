@@ -11,7 +11,7 @@ def delete_task(id: str) -> str:
     """
     Tu dois supprimer la ou les tâches dans la base de données et tu dois faire ca en deux etapes.
     Pour cela en entrée tu as la requete de l'utilisateur tu vas:
-    - récupérer les id des tâches à supprimer. Si il y a plusieurs id, ils seront séparés par des virgules sans espaces.
+    - Important : récupérer les id des tâches à supprimer. Si il y a plusieurs id, ils seront séparés par des virgules sans espaces.
     (tu dois te poser la bonne question, par exemple :
      quelle sont les identifiants des tâches de Virginie ?)
      Il doit y avoir le mot identifiant ou identifiants dans la requete.
@@ -26,7 +26,7 @@ def delete_task(id: str) -> str:
     try:
         print("Deleting task")
         task_ids = id.split(",")
-        regex_pattern = "|".join(task_ids)
+        regex_pattern = r"\b(" + "|".join(task_ids) + r")\b"
         delete_filter = {"text": {"$regex": regex_pattern}}
         tasks_collection.delete_many(delete_filter)
         return "Tasks deleted successfully."
